@@ -1,0 +1,17 @@
+{
+  "name": "sloane5",
+  "version": "1.0.0",
+  "description": "Pink and purple themed landing site",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "multer": "^1.4.5-lts.1"
+  }
+}

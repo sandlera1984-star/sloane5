@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Velvet Aura - Landing</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="page-landing">
+    <header class="top-nav">
+      <div class="brand">Velvet Aura</div>
+      <nav>
+        <a class="nav-link" href="index.html">Landing</a>
+        <a class="nav-link" href="home.html">Home</a>
+        <a class="nav-link" href="exclusive.html">Exclusive Content</a>
+      </nav>
+    </header>
+
+    <main class="landing">
+      <section class="hero">
+        <div class="hero-text">
+          <p class="eyebrow">Premium Creator Hub</p>
+          <h1>Where exclusivity meets connection.</h1>
+          <p class="subtext">
+            Connect with your audience in a bold pink and purple space built for
+            premium content and personalized experiences.
+          </p>
+          <div class="cta-row">
+            <button class="cta-button" id="signupButton">Sign Up</button>
+            <span class="price-tag">5 CAD a month</span>
+          </div>
+        </div>
+        <div class="hero-card">
+          <div class="card-content">
+            <h2>Creator Highlights</h2>
+            <ul>
+              <li>Private messaging</li>
+              <li>Subscriber-only galleries</li>
+              <li>Personalized drops</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="admin-upload">
+        <h2>Admin Upload Portal</h2>
+        <p>Only administrators can upload images and videos.</p>
+        <div class="admin-access">
+          <label for="adminCode">Admin Access Code</label>
+          <div class="admin-row">
+            <input
+              type="password"
+              id="adminCode"
+              placeholder="Enter admin code"
+              autocomplete="off"
+            />
+            <button class="secondary-button" id="unlockUploads">
+              Unlock Uploads
+            </button>
+          </div>
+          <p class="status" id="adminStatus">Uploads locked.</p>
+        </div>
+        <div class="upload-grid">
+          <label class="upload-tile">
+            Upload Images
+            <input type="file" id="imageUpload" accept="image/*" disabled />
+          </label>
+          <label class="upload-tile">
+            Upload Videos
+            <input type="file" id="videoUpload" accept="video/*" disabled />
+          </label>
+        </div>
+      </section>
+    </main>
+
+    <div class="modal-overlay" id="termsModal" aria-hidden="true">
+      <div class="modal">
+        <h2>Terms of Agreement</h2>
+        <div class="terms-scroll" id="termsScroll">
+          <p>
+            By accessing this platform, you acknowledge that all content is
+            intended for consenting adults only. You agree that you are solely
+            responsible for complying with the laws in your jurisdiction. All
+            subscriptions, tips, and digital purchases are final and
+            non-refundable. Content is provided “as is” without warranties of
+            any kind. The platform owner is not liable for any damages, losses,
+            chargebacks, or disputes arising from subscription use or digital
+            content access. You agree not to redistribute, record, or share any
+            exclusive materials. You accept full responsibility for your account
+            activity and agree to report any unauthorized access immediately.
+            Payments authorize ongoing billing until canceled. Cancellation
+            stops future billing but does not provide refunds. You certify that
+            you are at least 18 years of age and legally permitted to access
+            adult-oriented digital content. You understand that your experience
+            may involve interactions with third-party services beyond our
+            control. You agree to indemnify and hold harmless the platform
+            owner, creators, partners, and affiliates from any claims, legal
+            actions, or liabilities arising from your use, access, or purchase
+            of content. You acknowledge that availability, schedules, and
+            content offerings can change without notice. You understand that
+            subscription access is contingent on compliance with these terms.
+          </p>
+        </div>
+        <div class="terms-actions" id="termsActions">
+          <button class="secondary-button" id="agreeButton">Agree</button>
+          <button class="secondary-button" id="ageButton">
+            I Am Over 18 Years Of Age
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-overlay" id="signupModal" aria-hidden="true">
+      <div class="signup-circle">
+        <p>Under Construction</p>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
