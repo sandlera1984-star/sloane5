@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Velvet Aura - Home</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="page-home">
+    <header class="top-nav">
+      <div class="brand">Velvet Aura</div>
+      <nav>
+        <a class="nav-link" href="index.html">Landing</a>
+        <a class="nav-link" href="home.html">Home</a>
+        <a class="nav-link" href="exclusive.html">Exclusive Content</a>
+      </nav>
+    </header>
+
+    <main class="home-layout">
+      <aside class="sidebar">
+        <button class="sidebar-button active">Home</button>
+        <button class="sidebar-button">Account</button>
+        <button class="sidebar-button">Support</button>
+        <button class="sidebar-button" id="contactButton">Contact</button>
+      </aside>
+      <section class="home-content">
+        <h1>Welcome Back</h1>
+        <p>
+          Navigate your creator dashboard, manage your subscriptions, and reach
+          support whenever you need it.
+        </p>
+        <div class="stats">
+          <div>
+            <h2>24</h2>
+            <p>Active Subscribers</p>
+          </div>
+          <div>
+            <h2>7</h2>
+            <p>Pending Messages</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div class="modal-overlay" id="contactModal" aria-hidden="true">
+      <div class="modal">
+        <h2>Contact Support</h2>
+        <form id="contactForm">
+          <label for="contactEmail">Email</label>
+          <input
+            type="email"
+            id="contactEmail"
+            name="contactEmail"
+            placeholder="your@email.com"
+            required
+          />
+
+          <label for="issueType">Issue</label>
+          <select id="issueType" name="issueType" required>
+            <option value="" disabled selected>Select an issue</option>
+            <option value="Payment">Payment</option>
+            <option value="Account">Account</option>
+            <option value="Subscription">Subscription</option>
+          </select>
+
+          <label for="description">Description (200 words max)</label>
+          <textarea
+            id="description"
+            name="description"
+            rows="5"
+            placeholder="Describe your issue"
+            required
+          ></textarea>
+          <div class="word-count" id="wordCount">0 / 200 words</div>
+
+          <button type="submit" class="cta-button">Send</button>
+        </form>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
