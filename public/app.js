@@ -16,6 +16,8 @@ const imageUpload = document.getElementById("imageUpload");
 const videoUpload = document.getElementById("videoUpload");
 const adminStatus = document.getElementById("adminStatus");
 const adminSessionKey = "adminUnlocked";
+const uploadsGrid = document.getElementById("uploadsGrid");
+const uploadsEmpty = document.getElementById("uploadsEmpty");
 
 const pageIsLanding = document.body.classList.contains("page-landing");
 const pageIsHome = document.body.classList.contains("page-home");
@@ -127,6 +129,7 @@ const handleUpload = async (file) => {
       return;
     }
     adminStatus.textContent = "Upload successful.";
+    renderUploadTile(result.filePath);
   } catch (error) {
     adminStatus.textContent = "Upload failed. Please try again.";
   }
@@ -139,6 +142,82 @@ imageUpload?.addEventListener("change", (event) => {
 videoUpload?.addEventListener("change", (event) => {
   handleUpload(event.target.files[0]);
 });
+
+const setupDropZone = (element, typeLabel) => {
+  if (!element) {
+    return;
+  }
+  element.addEventListener("dragover", (event) => {
+    event.preventDefault();
+    element.classList.add("drag-active");
+  });
+  element.addEventListener("dragleave", () => {
+    element.classList.remove("drag-active");
+  });
+  element.addEventListener("drop", (event) => {
+    event.preventDefault();
+    element.classList.remove("drag-active");
+    const file = event.dataTransfer?.files?.[0];
+    if (!file) {
+      return;
+    }
+    const isImage = file.type.startsWith("image/");
+    const isVideo = file.type.startsWith("video/");
+    if ((typeLabel === "image" && !isImage) || (typeLabel === "video" && !isVideo)) {
+      adminStatus.textContent = `Please drop a ${typeLabel} file.`;
+      return;
+    }
+    handleUpload(file);
+  });
+};
+
+setupDropZone(imageUpload?.closest(".upload-tile"), "image");
+setupDropZone(videoUpload?.closest(".upload-tile"), "video");
+
+const renderUploadTile = (filePath) => {
+  if (!uploadsGrid || !filePath) {
+    return;
+  }
+  if (uploadsEmpty) {
+    uploadsEmpty.remove();
+  }
+  const card = document.createElement("div");
+  card.className = "upload-card";
+  if (filePath.match(/\.(mp4|webm|ogg)$/i)) {
+    const video = document.createElement("video");
+    video.src = filePath;
+    video.controls = true;
+    card.appendChild(video);
+  } else {
+    const img = document.createElement("img");
+    img.src = filePath;
+    img.alt = "Uploaded content";
+    card.appendChild(img);
+  }
+  uploadsGrid.prepend(card);
+};
+
+const loadUploads = async () => {
+  if (!uploadsGrid) {
+    return;
+  }
+  try {
+    const response = await fetch("/uploads-list");
+    if (!response.ok) {
+      return;
+    }
+    const result = await response.json();
+    const files = result.files || [];
+    if (files.length === 0) {
+      return;
+    }
+    files.forEach((filePath) => renderUploadTile(filePath));
+  } catch (error) {
+    // no-op
+  }
+};
+
+loadUploads();
 
 if (contactButton && contactModal) {
   contactButton.addEventListener("click", () => {

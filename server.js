@@ -59,6 +59,18 @@ app.post("/upload", upload.single("file"), (req, res) => {
   });
 });
 
+app.get("/uploads-list", (req, res) => {
+  fs.readdir(uploadsDir, (err, files) => {
+    if (err) {
+      return res.status(500).json({ message: "Unable to read uploads." });
+    }
+    const filtered = files
+      .filter((file) => !file.startsWith("."))
+      .map((file) => `/uploads/${file}`);
+    return res.status(200).json({ files: filtered });
+  });
+});
+
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
